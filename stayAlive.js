@@ -121,7 +121,7 @@ var shouldDecreaseCircleSize = false;
 var increaseSizeAmount = 0.05;
 
 function drawingLoop() {
-  
+
     ctx.font = "bold 30px Arial";
     ctx.textAlign = "center";
     if (!isGameOver) {
@@ -137,10 +137,10 @@ function drawingLoop() {
         ctx.fillText("ALL-TIME HIGH: " + highScore, canvas.width - 180, canvas.height - canvas.height / 50);
         ctx.fillText(totalNumberOfCircles, canvas.width / 2, 65);
         if (shouldDisplayMouseMove) {
-          ctx.font = "26px Arial";  
+          ctx.font = "26px Arial";
             ctx.fillText("CAN'T STAY IN ONE PLACE! YOU'LL DIE IN " + noMoveTimer, canvas.width / 2, canvas.height / 2);
         }
-      
+
         for(i=0; i<circles.length; i++){
           if (shouldSlideCircles){
           switch(slideDirection){
@@ -172,19 +172,19 @@ function drawingLoop() {
               shouldIncreaseCircleSize = false;
             },getRandomNumber(500,3000));
           }
-          
+
           if(shouldDecreaseCircleSize && circles[i][3] > 5){
             circles[i][3] =circles[i][3] - increaseSizeAmount;
             setTimeout(function(){
               shouldDecreaseCircleSize = false;
             },getRandomNumber(500,3000));
           }
-          
+
           if(circles[i][0]<-circles[i][3]){
             circles[i][0] = canvas.width + circles[i][3];
           }
           if(circles[i][1]<-circles[i][3]){
-            
+
             circles[i][1] = canvas.height + circles[i][3];
           }
       }
@@ -286,15 +286,15 @@ function getRandomSlideDirection(){
 }
 
 function displayMoveText() {
-  
+
   if (!isGameOver){
       secondsAlive++;
   }
-  
+
 
   ctx.fillStyle = "#FFFFFF"
   ctx.fill();
-  
+
   if (secondsAlive > 60 && secondsAlive % getRandomNumber(20,30) === 0){
     canvasBackgroundColor = circleColor;
     var hasRun = 0;
@@ -309,10 +309,10 @@ var handle = setTimeout(function(){
       hasRun = 0;
     }
   }
-  
- 
-  
-  
+
+
+
+
   if (secondsAlive % 10 === 0){
      if(getRandomNumber(0, 2) === 0){
        synchronizeColors();
@@ -320,7 +320,7 @@ var handle = setTimeout(function(){
     if(getRandomNumber(0, 1) === 0){
       circleColor = getRandomColor();
     }
-    
+
     switch(getRandomNumber(0,2)){
       case 0:
         shouldAddCircles= true;
@@ -329,7 +329,7 @@ var handle = setTimeout(function(){
         shouldAddCircles = false;
         break;
     }
-    
+
     switch(getRandomNumber(0,2)){
       case 0:
         shouldRemoveCircles= true;
@@ -338,7 +338,7 @@ var handle = setTimeout(function(){
         shouldRemoveCircles = false;
         break;
     }
-    
+
     switch(getRandomNumber(0,2)){
       case 0:
         shouldSlideCircles= true;
@@ -347,38 +347,38 @@ var handle = setTimeout(function(){
         shouldSlideCircles = false;
         break;
     }
-    
-    
-    
+
+
+
     slideDirection = getRandomNumber(0,8);
-    
+
     switch(getRandomNumber(0,4)){
       case 0:
         shouldIncreaseCircleSize = true;
         break;
     }
-    
+
     switch(getRandomNumber(0,4)){
       case 0:
         shouldDecreaseCircleSize = true;
         break;
     }
-    
+
   }
-  
+
   if (circleSize < 4){
     shouldDecreaseCircleSize = false;
   }
-  
+
   if(shouldSlideCircles === false && shouldRemoveCircles === false && shouldAddCircles === false && shouldIncreaseCircleSize === false){
     circleColor = getRandomColor();
     synchronizeColors();
   }
-  
+
   if(circles.length === 0){
     shouldAddCircles = true;
   }
-  
+
     if (shouldDisplayMouseMove && !isGameOver) {
         noMoveTimer = noMoveTimer - 1;
         if (noMoveTimer < 1 && canDie) {
@@ -436,12 +436,12 @@ function gameOver(text) {
     isGameOver = true;
   totalNumberOfCircles = 0;
     secondsAlive = 0;
-  
+
   var shouldIncreaseCircleSize = false;
 var shouldDecreaseCircleSize = false;
   var shouldSlideCircles = false;
     ctx.fillText(text, canvas.width / 2, canvas.height / 2);
-  
+
 }
 
 getCursorCoordinatesDelayed = [];
@@ -468,6 +468,7 @@ function addCircles() {
     if (!isGameOver) {
       if(shouldAddCircles){
         totalNumberOfCircles++;
+
         setDBValues();
         getDBValues();
         var circlesX;
@@ -485,7 +486,7 @@ function addCircles() {
       } else if(shouldRemoveCircles){
         circles.splice(circles.length - 1, 1);
       }
-        
+
     }
 }
 
